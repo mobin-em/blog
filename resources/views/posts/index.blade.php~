@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آخرین مقالات | وبلاگ تخصصی فناوری</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            500: '#6366f1',
+                            600: '#4f46e5'
+                        },
+                        secondary: {
+                            500: '#8b5cf6'
+                        },
+                        accent: {
+                            500: '#ec4899'
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Vazir', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            background-image:
+                linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            min-height: 100vh;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark {
+            background-color: #0f172a;
+            background-image:
+                linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            color: #e2e8f0;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-title {
+            color: #1e293b;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dark .page-title {
+            color: #f8fafc;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            border-radius: 2px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .page-subtitle {
+            color: #475569;
+        }
+
+        .dark .page-subtitle {
+            color: #94a3b8;
+        }
+
+        .post-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .post-card {
+            background: rgba(15, 23, 42, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-title {
+            color: #1e293b;
+        }
+
+        .dark .post-title {
+            color: #f8fafc;
+        }
+
+        .post-excerpt {
+            color: #475569;
+        }
+
+        .dark .post-excerpt {
+            color: #94a3b8;
+        }
+
+        .no-image-placeholder {
+            background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366f1;
+            font-weight: 500;
+        }
+
+        .dark .no-image-placeholder {
+            background: linear-gradient(135deg, #1e1b4b, #2e1065);
+            color: #a5b4fc;
+        }
+
+        .footer-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .footer-glass {
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: #475569;
+        }
+
+        .dark .footer-text {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="min-h-screen transition-all dark:bg-dark-900">
+<!-- هدر -->
+<header class="glass-header dark:glass-header sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4">
+        <nav class="flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="/" class="text-2xl font-bold flex items-center">
+                    <span class="mdi mdi-book-open-page-variant-outline ml-2 text-3xl text-indigo-500"></span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
+                       وبلاگ تخصصی فناوری
+                    </span>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="/" class="px-6 py-2.5 rounded-full text-white flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 transition">
+                    <span class="mdi mdi-home-outline mr-2"></span>
+                    بازگشت به خانه
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- محتوای اصلی -->
+<main class="container mx-auto px-4 py-12">
+    <div class="text-center mb-20">
+        <h1 class="text-5xl font-bold mb-6 page-title dark:text-white">
+            مقالات
+        </h1>
+        <p class="text-xl page-subtitle max-w-2xl mx-auto leading-relaxed dark:text-gray-300">
+            عمیق‌ترین مقالات فناوری و برنامه‌نویسی را در اینجا بخوانید
+        </p>
+    </div>
+
+    <div id="posts-container" class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <!-- محتوای پست‌ها اینجا نمایش داده می‌شود -->
+    </div>
+
+    <div id="pagination" class="mt-20 flex justify-center gap-3 flex-wrap"></div>
+</main>
+
+<!-- فوتر -->
+<footer class="footer-glass dark:footer-glass py-12 mt-20">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-right">
+                <h3 class="text-2xl font-bold mb-3 page-title dark:text-white">فناوری‌نوشت</h3>
+                <p class="page-subtitle max-w-md dark:text-gray-300">مرجع تخصصی مقالات فناوری اطلاعات و برنامه‌نویسی</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-11 h-11 rounded-full bg-indigo-500 text-white flex items-center justify-center hover:bg-indigo-600 transition">
+                    <span class="mdi mdi-telegram text-xl"></span>
+                </a>
+                <a href="#" class="w-11 h-11 rounded-full bg-pink-500 text-white flex items-center justify-center hover:bg-pink-600 transition">
+                    <span class="mdi mdi-instagram text-xl"></span>
+                </a>
+                <a href="#" class="w-11 h-11 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition">
+                    <span class="mdi mdi-twitter text-xl"></span>
+                </a>
+                <a href="#" class="w-11 h-11 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition">
+                    <span class="mdi mdi-linkedin text-xl"></span>
+                </a>
+            </div>
+        </div>
+        <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-sm footer-text dark:text-gray-400">
+            <p>© ۱۴۰۲ - تمام حقوق برای فناوری‌نوشت محفوظ است</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // اعمال حالت تاریک بر اساس تنظیمات صفحه اصلی
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+
+        const container = document.getElementById('posts-container');
+        const pagination = document.getElementById('pagination');
+        let currentPage = 1;
+
+        // تابع نمایش اسکلتون‌های بارگذاری
+        function showLoadingSkeletons() {
+            container.innerHTML = '';
+            for (let i = 0; i < 6; i++) {
+                container.innerHTML += `
+                    <div class="post-card animate-pulse">
+                        <div class="h-64 bg-gray-200 dark:bg-dark-700"></div>
+                        <div class="p-6 space-y-4">
+                            <div class="h-6 rounded-full bg-gray-200 dark:bg-dark-700 w-3/4"></div>
+                            <div class="space-y-2">
+                                <div class="h-4 rounded-full bg-gray-200 dark:bg-dark-700"></div>
+                                <div class="h-4 rounded-full bg-gray-200 dark:bg-dark-700 w-5/6"></div>
+                                <div class="h-4 rounded-full bg-gray-200 dark:bg-dark-700 w-2/3"></div>
+                            </div>
+                            <div class="flex justify-between items-center pt-4">
+                                <div class="h-9 rounded-full bg-gray-200 dark:bg-dark-700 w-32"></div>
+                                <div class="h-4 rounded-full bg-gray-200 dark:bg-dark-700 w-20"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // تابع دریافت پست‌ها از API
+        async function fetchPosts(page = 1) {
+            showLoadingSkeletons();
+
+            try {
+                const response = await axios.get(`/api/posts?page=${page}&per_page=9`);
+                renderPosts(response.data.data);
+                renderPagination(response.data);
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <div class="inline-flex items-center justify-center w-24 h-24 bg-red-100 dark:bg-red-900/50 rounded-full mb-6">
+                            <span class="mdi mdi-alert-circle-outline text-red-500 dark:text-red-300 text-5xl"></span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-3 page-title">خطا در دریافت مقالات</h2>
+                        <p class="text-lg mb-8 max-w-md mx-auto leading-relaxed page-subtitle">
+                            ${error.response?.data?.message || 'متاسفانه مشکلی در ارتباط با سرور پیش آمده است.'}
+                        </p>
+                        <button onclick="fetchPosts(currentPage)"
+                                class="px-8 py-3 text-white rounded-full flex items-center mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 transition">
+                            <span class="mdi mdi-refresh mr-2"></span>
+                            تلاش مجدد
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // تابع نمایش پست‌ها
+        function renderPosts(posts) {
+            container.innerHTML = '';
+
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <div class="inline-flex items-center justify-center w-24 h-24 bg-indigo-100 dark:bg-indigo-900/50 rounded-full mb-6">
+                            <span class="mdi mdi-book-remove-outline text-indigo-500 dark:text-indigo-300 text-5xl"></span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 page-title">مقاله‌ای یافت نشد</h3>
+                        <p class="page-subtitle max-w-md mx-auto">
+                            در حال حاضر هیچ مقاله‌ای برای نمایش وجود ندارد. به زودی مقالات جدید منتشر خواهد شد.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            posts.forEach(post => {
+                const excerpt = post.content.length > 150
+                    ? post.content.substring(0, 150) + '...'
+                    : post.content;
+
+                const date = new Date(post.created_at).toLocaleDateString('fa-IR');
+                const readingTime = post.reading_time || Math.max(1, Math.ceil(post.content.length / 1500));
+
+                const postElement = `
+                    <div class="post-card">
+                        ${post.image_url ? `
+                            <img src="${post.image_url}" alt="${post.title}" class="w-full h-64 object-cover">
+                        ` : `
+                            <div class="w-full h-64 no-image-placeholder">
+                                <span class="text-lg">بدون تصویر</span>
+                            </div>
+                        `}
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4 flex-wrap">
+                                <span class="text-xs px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">
+                                    <span class="mdi mdi-calendar-outline ml-1"></span>
+                                    ${date}
+                                </span>
+                                <span class="text-xs px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-200">
+                                    <span class="mdi mdi-clock-outline ml-1"></span>
+                                    ${readingTime} دقیقه مطالعه
+                                </span>
+                            </div>
+                            <h2 class="text-xl font-bold mb-3 post-title leading-snug">${post.title}</h2>
+                            <p class="post-excerpt mb-5 leading-relaxed">${excerpt}</p>
+                            <div class="flex justify-between items-center">
+                                <a href="/posts/${post.id}"
+                                   class="px-5 py-2.5 text-white rounded-full flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 transition">
+                                    مطالعه مقاله
+                                    <span class="mdi mdi-arrow-left mr-1"></span>
+                                </a>
+                                <span class="text-xs px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200">
+                                    <span class="mdi mdi-eye-outline ml-1"></span>
+                                    ${post.views || '۰'} بازدید
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += postElement;
+            });
+        }
+
+        // تابع نمایش صفحه‌بندی
+        function renderPagination(data) {
+            if (!data.links || data.links.length <= 3) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '';
+
+            data.links.forEach(link => {
+                if (!link.url) return;
+
+                const isActive = link.active;
+                const isPrevious = link.label.includes('Previous');
+                const isNext = link.label.includes('Next');
+                const pageNumber = isPrevious ? 'قبلی' : isNext ? 'بعدی' : link.label;
+
+                paginationHTML += `
+                    <button onclick="handlePagination('${link.url}')"
+                        class="px-5 py-2 rounded-full transition-all
+                               ${isActive ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg font-bold' :
+                    'bg-white dark:bg-dark-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-600 shadow-md'}
+                               ${isPrevious ? 'ml-3' : isNext ? 'mr-3' : 'mx-1'}">
+                        ${isPrevious ? '« صفحه قبلی' : isNext ? 'صفحه بعدی »' : pageNumber}
+                    </button>
+                `;
+            });
+
+            pagination.innerHTML = paginationHTML;
+        }
+
+        // تابع عمومی برای صفحه‌بندی
+        window.handlePagination = function(url) {
+            const page = new URL(url).searchParams.get('page') || 1;
+            currentPage = page;
+            fetchPosts(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // بارگذاری اولیه
+        fetchPosts();
+    });
+</script>
+</body>
+</html>
