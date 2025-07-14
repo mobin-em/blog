@@ -50,10 +50,10 @@
 
 | صفحه | تصویر |
 |------|--------|
-| صفحه اصلی | ![Home](./screenshots/home.png) |
-| نمایش پست | ![Post View](./screenshots/post.png) |
-| پنل مدیریت | ![Admin Panel](./screenshots/admin.png) |
-| فرم ورود | ![login](./storage/app/private/Screenshot2025-07-14210045.png) |
+| صفحه اصلی | ![Home](./storage/app/private/home.png) |
+| نمایش پست | ![Post View](./storage/app/private/post.png) |
+| پنل مدیریت | ![Admin Panel](./storage/app/private/panel.png) |
+| فرم ورود | ![login](./storage/app/private/login.png) |
 
 ---
 
