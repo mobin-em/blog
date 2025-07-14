@@ -53,7 +53,7 @@
 | صفحه اصلی | ![Home](./screenshots/home.png) |
 | نمایش پست | ![Post View](./screenshots/post.png) |
 | پنل مدیریت | ![Admin Panel](./screenshots/admin.png) |
-| فرم ورود | ![Login](.https://github.com/mobin-em/blog/blob/main/storage/app/private/Screenshot%202025-07-14%20210045.png/storage/app/private) |
+| فرم ورود | ![Login](./storage/app/private/Screenshot 2025-07-14 210045.png) |
 
 ---
 
