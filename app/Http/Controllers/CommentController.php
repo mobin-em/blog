@@ -112,7 +112,7 @@ class CommentController extends Controller
     {
 
         try {
-            // بررسی وجود پست
+           
             if (!$post->exists) {
                 return response()->json([
                     'success' => false,
@@ -147,7 +147,7 @@ class CommentController extends Controller
 
 
 
-            // بارگذاری اطلاعات کاربر با کامنت
+          
             $comment->load(['user' => function($query) {
                 $query->select('id', 'name', 'is_admin');
             }]);
@@ -208,7 +208,7 @@ class CommentController extends Controller
                 ], 404);
             }
 
-            // بررسی مجوزها (ادمین یا مالک کامنت)
+            
             if ($comment->user_id != $user->id && !$user->is_admin) {
                 return response()->json([
                     'success' => false,
