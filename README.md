@@ -53,7 +53,7 @@
 | صفحه اصلی | ![Home](./screenshots/home.png) |
 | نمایش پست | ![Post View](./screenshots/post.png) |
 | پنل مدیریت | ![Admin Panel](./screenshots/admin.png) |
-| فرم ورود | ![Login](./screenshots/login.png) |
+| فرم ورود | ![Login](./storage/app/private) |
 
 ---
 
